@@ -2,7 +2,6 @@
 #include <iostream>
 #include <sstream>
 
-#include "Leetcode_215_R.h"
 #include "Leetcode_221.h"
 using namespace std;
 void test_221(void);

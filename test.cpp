@@ -1,44 +1,35 @@
-#include <iostream>
-#include <queue>
-#include <string>
-#include <vector>
+#include <ctype.h>
 
-#include "ctype.h"
+#include <iostream>
+#include <list>
+#include <map>
+#include <queue>
+#include <sstream>
+#include <string>
+#include <unordered_set>
+#include <vector>
 using namespace std;
 
-// Definition for a binary tree node.
-struct TreeNode {
+struct ListNode {
   int val;
-  TreeNode *left;
-  TreeNode *right;
-  TreeNode() : val(0), left(nullptr), right(nullptr) {}
-  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
-      : val(x), left(left), right(right) {}
+  ListNode *next;
+  ListNode(int x) : val(x), next(NULL) {}
 };
 
 class Solution {
  public:
-  struct prop_of_tree {
-    int height;
-    bool ifbalanced;
-    prop_of_tree() : height(0), ifbalanced(true) {}
-  };
-
-  bool isBalanced(TreeNode *root) {
-    if (!root) return true;
-    return check_tree(root).ifbalanced;
-  }
-  prop_of_tree check_tree(TreeNode *root) {
-    prop_of_tree result;
-    if (!root) return result;
-    prop_of_tree leftsubtree = check_tree(root->left);
-    prop_of_tree rightsubtree = check_tree(root->right);
-    result.height = max(leftsubtree.height, rightsubtree.height) + 1;
-    result.ifbalanced = leftsubtree.ifbalanced && rightsubtree.ifbalanced &&
-                        (abs(leftsubtree.height - rightsubtree.height) <= 1);
-    return result;
+  bool hasCycle(ListNode *head) {
+    if (head == nullptr) return false;
+    ListNode *slow = head;
+    ListNode *fast = head->next;
+    while (fast != nullptr && slow != nullptr) {
+      if (fast == slow) return true;
+      slow == slow->next;
+      if ((fast = fast->next) == nullptr) return false;
+      fast = fast->next;
+    }
+    return false;
   }
 };
 
-void test(void) {}
+void test(void) { Solution s; }
